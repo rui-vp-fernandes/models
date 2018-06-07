@@ -11,8 +11,7 @@ extra_css: ["https://fiware.org/style/fiware_readthedocs.css"]
 pages:
   - 'Home': index.md
   - 'Guidelines'  : guidelines.md
-  - 'Alerts':
-      - 'Alert'                        : 'Alert/doc/spec.md'
+  - 'Alert'                            : 'Alert/doc/spec.md'
   - 'Building':
       - 'Introduction'                 : 'Building/doc/introduction.md'
       - 'Building'                     : 'Building/Building/doc/spec.md' 
@@ -73,7 +72,7 @@ pages:
       - 'Introduction'         : 'Weather/doc/introduction.md'
       - 'WeatherObserved'      : 'Weather/WeatherObserved/doc/spec.md'
       - 'WeatherForecast'      : 'Weather/WeatherForecast/doc/spec.md'
-      - 'WeatherAlert'         : 'Weather/WeatherAlert/doc/spec.md'
+      - 'WeatherAlarm'         : 'Weather/WeatherAlarm/doc/spec.md'
   -  'Waste Management':
       - 'Introduction'         : 'WasteManagement/doc/introduction.md'
       - 'WasteContainerIsle'   : 'WasteManagement/WasteContainerIsle/doc/spec.md'
