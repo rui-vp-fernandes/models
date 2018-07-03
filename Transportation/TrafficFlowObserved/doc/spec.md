@@ -12,7 +12,7 @@ the Automotive and Smart City vertical segments and related IoT applications.
 + `type` : Entity type. It must be equal to `TrafficFlowObserved`.
 
 + `location` : Location of this traffic flow observation represented by a GeoJSON geometry. 
-    + Attribute type: `geo:json`.
+    + Attribute type: any of the location formats supported by NGSIv2 (`geo:point`, `geo:line`, `geo:box`, `geo:polygon` or `geo:json`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory if `refRoadSegment` is not present.
 

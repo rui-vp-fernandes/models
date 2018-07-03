@@ -11,7 +11,7 @@ Represents an access point to a parking site, normally an offstreet parking.
 + `type` : Entity type. It must be equal to `ParkingAccess`.
 
 + `location` : Geolocation of the access point represented by a GeoJSON Point.
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory
     

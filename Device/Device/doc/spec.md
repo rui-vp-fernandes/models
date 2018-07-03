@@ -58,7 +58,7 @@ and which are not currently covered by the standard attributes defined by this m
     + Optional
     
 + `location` : Location of this device represented by a GeoJSON geometry of type point. 
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Optional.
     

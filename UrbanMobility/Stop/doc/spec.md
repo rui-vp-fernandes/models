@@ -38,8 +38,8 @@ It represents a GTFS `stop` which `location_type` shall be equal to `0`.
   + Attribute type: Property. [Text](https://schema.org/Text)
   + Optional
  
-+ `location`: Stop's location encoded as GeoJSON Point which coordinates shall be in the form [`stop_long`,`stop_lat`].
-  + Attribute type: GeoProperty. `geo:json`.
++ `location`: Stop's location encoded as GeoJSON Point.
+  + Attribute type: `geo:point` or `geo:json` (of type `Point`).
   + Normative References: [rfc7946](https://tools.ietf.org/html/rfc7946)
   + Mandatory
 

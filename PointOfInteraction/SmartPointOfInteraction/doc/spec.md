@@ -18,8 +18,8 @@ The data model includes information regarding the area/surface covered by the te
     + Allowed values: `information`, `entertainment`, `infotainment`, `co-creation` or any other extended value defined by the application.
     + Mandatory
     
-+ `areaCovered` : Defines the area covered by the Smart Point of Interaction using geoJSON format. It can be represented by a feature of type `Polygon` or `Multipolygon`.
-    + Attribute type: `geo:json`.
++ `areaCovered` : Defines the area covered by the Smart Point of Interaction using GepJSON format. It can be represented by a feature of type `Polygon` or `Multipolygon`.
+    + Attribute type: `geo:box`, `geo:polygon` or `geo:json` (of type `Polygon` or `MultiPolygon`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Optional    
     

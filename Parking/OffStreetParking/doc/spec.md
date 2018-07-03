@@ -26,7 +26,7 @@ DATEX II terms can be found at [http://datexbrowser.tamtamresearch.com/](http://
     + Read-Only. Automatically generated.
     
 + `location` : Geolocation of the parking site represented by a GeoJSON (Multi)Polygon or Point.
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point`, `geo:box`, `geo:polygon` or `geo:json` (of type `Point`, `Polygon` or `MultiPolygon`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory if `address` is not defined.
     

@@ -9,7 +9,7 @@ It represents equipment, usually on street, used to the automated control of a g
 + `type` : It must be equal to `StreetlightControlCabinet`.
 
 + `location` : Control cabinet's location represented by a GeoJSON point. 
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/draft-ietf-geojson-03](https://tools.ietf.org/html/draft-ietf-geojson-03)
     + Mandatory
 

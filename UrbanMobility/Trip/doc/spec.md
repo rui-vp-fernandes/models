@@ -41,9 +41,9 @@ See [https://developers.google.com/transit/gtfs/reference/#tripstxt](https://dev
   + Attribute type: Relationship. It shall point to an Entity of Type [gtfs:Service](../../doc/Service/spec.md) 
   + Optional
   
-+ `location`: The geographical shape associated to the trip encoded as GeoJSON `LineString` or `MultiLineString`.
++ `location`: The geographical shape associated to the trip encoded as GeoJSON.
 The coordinates shall be obtained from the `shapes.txt` feed file as per the value of `shape_id`. 
-  + Attribute type: GeoProperty. `geo:json`
+  + Attribute type: `geo:json` (of type `LineString` or `MultiLineString`).
   + Optional
      
 + `hasRoute`: Same as `route_id`.

@@ -10,7 +10,7 @@ together by the same automated system (cabinet controller).
 + `type` : It must be equal to `StreetlightGroup`.
 
 + `location` : Streetlight's group location represented by a GeoJSON (multi)geometry. 
-    + Attribute type: `geo:json`.
+    + Attribute type: any of the location formats supported by NGSIv2 (`geo:point`, `geo:line`, `geo:box`, `geo:polygon` or `geo:json`).
     + Normative References: [https://tools.ietf.org/html/draft-ietf-geojson-03](https://tools.ietf.org/html/draft-ietf-geojson-03)
     + Mandatory
         

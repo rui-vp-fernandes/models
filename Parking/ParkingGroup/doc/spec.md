@@ -43,7 +43,7 @@ per group type.
     + Mandatory
        
 + `location` : Geolocation of the parking group represented by a GeoJSON (Multi)Polygon or Point.
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point`, `geo:box`, `geo:polygon` or `geo:json` (of type `Point`, `Polygon` or `MultiPolygon`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Optional
 

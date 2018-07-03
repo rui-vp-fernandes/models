@@ -13,7 +13,7 @@ A JSON Schema corresponding to this data model can be found [here](http://fiware
 + `type` : Entity type. It must be equal to `WasteContainer`.
 
 + `location` : Container's location represented by a GeoJSON Point.
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory if `address` is not present.
 

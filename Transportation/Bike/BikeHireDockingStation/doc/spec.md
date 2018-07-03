@@ -28,9 +28,8 @@ A JSON Schema corresponding to this data model can be found [here](https://fiwar
         ](http://schema.org/DateTime)
     +   Read-Only. Automatically generated.
 
-+   `location` : Geolocation of the station represented by a GeoJSON
-    (Multi)Polygon or Point.
-    +   Attribute type: `geo:json`.
++   `location` : Geolocation of the station represented by a GeoJSON (Multi)Polygon or Point.
+    +   Attribute type: `geo:point`, `geo:box`, `geo:polygon` or `geo:json` (of type `Point`, `Polygon` or `MultiPolygon`).
     +   Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     +   Mandatory if `address` is not defined.
 

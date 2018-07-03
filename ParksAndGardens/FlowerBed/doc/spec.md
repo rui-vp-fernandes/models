@@ -55,7 +55,7 @@ to which the trees, or plants in the flower bed belong.
     + Optional
 
 + `location` : Location of the flower bed represented by a GeoJSON geometry. 
-    + Attribute type: `geo:json`.
+    + Attribute type: any of the location formats supported by NGSIv2 (`geo:point`, `geo:line`, `geo:box`, `geo:polygon` or `geo:json`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory if `address` is not defined
     

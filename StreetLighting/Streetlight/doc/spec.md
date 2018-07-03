@@ -13,7 +13,7 @@ Such data is captured by entities of type `StreetlightModel`.
 + `type` : It must be equal to `Streetlight`.
 
 + `location` : Streetlight's location represented by a GeoJSON Point. 
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/draft-ietf-geojson-03](https://tools.ietf.org/html/draft-ietf-geojson-03)
     + Mandatory if `address` is not present.
     

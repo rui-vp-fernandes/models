@@ -11,7 +11,7 @@ A geographical area which keeps one or more waste containers.
 + `type` : Entity type. It must be equal to `WasteContainerIsle`. 
 
 + `location` : Location of the isle represented by a GeoJSON Polygon.
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:polygon` or `geo:json` (of type `Polygon`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory
   

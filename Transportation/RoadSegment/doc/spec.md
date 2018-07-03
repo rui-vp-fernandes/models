@@ -49,17 +49,17 @@ This data model has been developed in cooperation with mobile operators and the 
     + Mandatory
     
 + `location` : A GeoJSON (multi)line string which defines this road segment.
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:json` (of type `LineString` or `MultiLineString`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory
     
 + `startPoint` : The start point of this road segment encoded as a GeoJSON point. 
-    + Attribute type: `geo:json`
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory
 
 + `endPoint` : The end point of this road segment encoded as a GeoJSON point.
-    + Attribute type: `geo:json`
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory
     

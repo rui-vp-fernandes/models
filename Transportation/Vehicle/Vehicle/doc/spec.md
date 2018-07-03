@@ -41,7 +41,7 @@ This is different than the vehicle type (car, lorry, etc.) represented by the `v
 
 + `location` : Vehicle's last known location represented by a GeoJSON Point. Such point may contain the vehicle's
 *altitude* as the third component of the `coordinates` array. 
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Attribute metadata:
         + `timestamp`: Timestamp which captures when the vehicle was at that location.
@@ -52,7 +52,7 @@ This is different than the vehicle type (car, lorry, etc.) represented by the `v
     
 + `previousLocation` : Vehicle's previous location represented by a GeoJSON Point. Such point may contain the previous vehicle's
 *altitude* as the third component of the`coordinates` array.
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Attribute metadata:
         + `timestamp`: Timestamp which captures when the vehicle was at that location.

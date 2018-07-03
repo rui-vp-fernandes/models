@@ -30,7 +30,7 @@ Thus, an entity of type `ParkingSpot` cannot exist without a containing entity o
     + Optional
 
 + `location` : Geolocation of the parking spot, represented by a GeoJSON Point.
-    + Attribute type: `geo:json`.
+    + Attribute type: `geo:point` or `geo:json` (of type `Point`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory. Not nullable (if `address` is not defined).  
 

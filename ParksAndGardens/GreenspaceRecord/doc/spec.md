@@ -26,7 +26,7 @@ A JSON Schema corresponding to this data model can be found {{add link to JSON S
     + Optional
 
 + `location` : Location of the area concerned by this record and represented by a GeoJSON geometry. 
-    + Attribute type: `geo:json`.
+    + Attribute type: any of the location formats supported by NGSIv2 (`geo:point`, `geo:line`, `geo:box`, `geo:polygon` or `geo:json`).
     + Normative References: [https://tools.ietf.org/html/rfc7946](https://tools.ietf.org/html/rfc7946)
     + Mandatory
     
