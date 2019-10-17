@@ -120,8 +120,10 @@ The figure below shows how air quality information, at a certain point of
 interest, can be conveyed using the FIWARE Data Models (involving the entity
 types `AirQualityObserved`, `PointOfInterest`) in NGSI-LD format. The new
 representation has been obtained by applying the conversion rules described
-before. Please note that the referred JSON-LD `@context` could be eventually
-published by FIWARE at the suggested URL.
+before. 
+
+Please note that the referred JSON-LD `@context` could also be served 
+by [https://fiware.github.io/data-models/context.jsonld](https://fiware.github.io/data-models/context.jsonld).
 
 ### Airquality in NGSI-LD format
 
