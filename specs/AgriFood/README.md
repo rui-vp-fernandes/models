@@ -1,6 +1,6 @@
 # Agrifood Data Models
 
-This folder is intended to contain data models for Smart Agri Food:
+This folder is intended to contain data models for Smart Agri-Food:
 
 -   [AgriApp](https://github.com/FIWARE/data-models/blob/master/specs/AgriFood/AgriApp/schema.json)
 -   [AgriCrop](https://github.com/GSMADeveloper/NGSI-LD-Entities/blob/master/definitions/Agri-Crop.md)

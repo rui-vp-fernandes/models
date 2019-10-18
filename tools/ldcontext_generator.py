@@ -17,7 +17,7 @@ Authors: José M. Cantera, Dmitrii Demin
 import json
 import yaml
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from argparse import ArgumentParser
 
 # The aggregated @context will be stored here
@@ -54,7 +54,7 @@ def read_json(infile):
 
 def write_json(data, outfile):
     with open(outfile, 'w') as data_file:
-        data_file.write(json.dumps(data, indent=4))
+        data_file.write(json.dumps(data, indent=4, sort_keys=True))
         data_file.write("\n")
 
 
@@ -307,7 +307,7 @@ def write_context_file():
 
     ld_context = {
         '@context': aggregated_context,
-        'generatedAt': datetime.now().replace(microsecond=0).isoformat()
+        'generatedAt': datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     }
 
     write_json(ld_context, 'context.jsonld')

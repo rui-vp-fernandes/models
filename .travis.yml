@@ -78,8 +78,3 @@ jobs:
 notifications:
   on_success: change
   on_failure: always
-  webhooks:
-    on_success: always
-    on_failure: never
-    urls:
-      secure: fOXYC8PKUi/0yK+E4NzhDkEYmxZ8m7Zz8mkG4+C6VXaVZymuY2kyi92R5N1Qx7ptadf9keRPibqVa+BhvwwPRMG7Q79YfR4wD8l09Z1cQkbTUGIZ2sy+3wBgbmH+4e1VvhZJK4PtJ3gsvEevhUe0thIaoCNnbfraZN79FhyzS1RMfekTyPDhXr/G6WUcpqnvEn1acWUnDhbM+/fpM7F6g/bcdQFeKtBCI5KTTrMHyl2j+YZUGnA5YFlX317ybxLJdQZeQV0lbfW3RI2jMy80glWwwzn3dcdP8AmserUNbPdjFKJMySFbBJy8oyuqV3C6SNx8C0imd4244XP+CtU+1AdcoD78HOuw4YwqD9nuJ/mREddm2Ujl+6uY5Ihyk18JcA6vKSvqikU1q0dCZp9DaS/adOBCTEGNKA0uBWjGxhIutGj8tBG0S6Z6pUu5ERjLoNDgScXG8A9tZVnmqsNfapPPzlAdx+4pkCEFGocleGX/sHkHgLaj6LhaxEIinFOhaxU1hM80LWkaoaOaiYj1so9J9RaRrG69K8UVaLtzxL6o/hCWVHFZXQPiHA8Kvy6wJTqc6qgkDjiFy1v0mLvhU+9qzUfNhpZX71w4BhB6DA/RlPE4HG0qAI3gWiTXZYKwokABiie1x8EgsJ2N/GynXtkZRVD8M+gAokHYIon2PnI=
