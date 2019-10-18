@@ -85,7 +85,19 @@ The latter includes both the FIWARE Data Models `@context` and the Core `@contex
 The full `@context` is also available at 
 [https://schema.lab.fiware.org/ld/context](https://schema.lab.fiware.org/ld/context)
 
-You can use in your NGSI-LD Entities a FIWARE Lab or GitHub URI, although the latter is a bit safer as it only depends on GitHub and not on the FIWARE Lab infrastructure. 
+When it comes to referencing the FIWARE Data Models `@context` 
+in your NGSI-LD Entities, there are three different options: 
+
+* Use the FIWARE Lab URI [https://schema.lab.fiware.org/ld/context](https://schema.lab.fiware.org/ld/context). 
+* Use the GitHub URI [https://fiware.github.io/data-models/full-context.jsonld](https://fiware.github.io/data-models/full-context.jsonld).
+* Use a URI referencing a server within your own premises.
+
+On one hand, the FIWARE Lab URI is convenient, as it is shorter and cleaner, although it depends on a 
+redirection made by the FIWARE Lab Infrastructure, 
+which does not have 100% availability guaranteed. On the other hand, the GitHub 
+URI is longer, but in general GitHub has higher availability 
+than FIWARE Lab. Lastly, an on-premise URI can help to solve issues 
+faced by applications that are deployed behind firewalls. 
 
 ### Q: What is a Property of a Property / Relationship and all the combinations?
 
