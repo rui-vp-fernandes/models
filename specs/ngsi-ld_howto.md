@@ -125,7 +125,7 @@ before.
 Please note that the FIWARE Data Models `@context` could also be served 
 by [https://fiware.github.io/data-models/context.jsonld](https://fiware.github.io/data-models/context.jsonld)
 and by [https://fiware.github.io/data-models/full-context.jsonld](https://fiware.github.io/data-models/full-context.jsonld).
-The latter includes both the FIWARE Data Models and the Core @context. 
+The latter includes both the FIWARE Data Models and the Core `@context`. 
 
 ### Airquality in NGSI-LD format
 
