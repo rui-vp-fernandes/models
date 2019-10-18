@@ -79,9 +79,11 @@ You can find an example [here](https://schema.lab.fiware.org/ld/context).
 
 ### Q: What URI should I use to reference the FIWARE Data Models `@context`?
 
-The source of truth of the FIWARE Data Models Context are [https://fiware.github.io/data-models/context.jsonld](https://fiware.github.io/data-models/context.jsonld) and [https://fiware.github.io/data-models/full-context.jsonld](https://fiware.github.io/data-models/full-context.jsonld). The latter includes both the FIWARE Data Models @context and the Core @context. 
+The sources of truth for the FIWARE Data Models `@context` are [https://fiware.github.io/data-models/context.jsonld](https://fiware.github.io/data-models/context.jsonld) and [https://fiware.github.io/data-models/full-context.jsonld](https://fiware.github.io/data-models/full-context.jsonld). 
+The latter includes both the FIWARE Data Models `@context` and the Core `@context`. 
 
-The full @context is also available at [https://schema.lab.fiware.org/ld/context](https://schema.lab.fiware.org/ld/context)
+The full `@context` is also available at 
+[https://schema.lab.fiware.org/ld/context](https://schema.lab.fiware.org/ld/context)
 
 You can use in your NGSI-LD Entities a FIWARE Lab or GitHub URI, although the latter is a bit safer as it only depends on GitHub and not on the FIWARE Lab infrastructure. 
 
