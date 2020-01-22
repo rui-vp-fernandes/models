@@ -7,6 +7,8 @@
 [![Documentation](https://img.shields.io/readthedocs/fiware-datamodels.svg)](https://fiware-datamodels.rtfd.io)
 [![Build badge](https://img.shields.io/travis/FIWARE/data-models.svg "Travis build status")](https://travis-ci.org/FIWARE/data-models/)
 
+This repository is going to be archived (Jan-2020) and subsequent works will be carried out in [Smart data models] (https://github.com/smart-data-models) repositories. Further questions on migration. [alberto.abella@fiware.org](mailto:alberto.abella@fiware.org)
+
 This repository contains:
 
 -   [JSON Schemas and documentation](./specs/README.md) on harmonized datamodels
