@@ -1,5 +1,11 @@
 # Parking
 
+**Note: The latest version of these Data Models can be found at
+[https://github.com/smart-data-models/dataModel.Parking](https://github.com/smart-data-models/dataModel.Parking)**
+
+This repository is going to be archived (Jan-2020) and subsequent works will be carried out in [Smart data models] (https://github.com/smart-data-models) repositories. Further questions on migration. alberto.abella@fiware.org
+
+
 This folder contains all the code that allows to expose harmonized datasets for
 parking information. Those datasets follow the
 [proposed smart parking data models](https://docs.google.com/document/d/17leIlKCE5EdOtrAurbIsvbjRnE6UMEXQcNVswvS0J_A/edit?usp=sharing).
