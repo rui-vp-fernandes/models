@@ -1,5 +1,11 @@
 # Point Of interest
 
+
+**Note: The latest version of these Data Models can be found at
+[https://github.com/smart-data-models/dataModel.PointOfInterest](https://github.com/smart-data-models/dataModel.PointOfInterest)**
+
+This repository is going to be archived (Jan-2020) and subsequent works will be carried out in [Smart data models] (https://github.com/smart-data-models) repositories. Further questions on migration. alberto.abella@fiware.org
+
 This folder contains all the code related to a harmonized NGSI v2 endpoint.
 
 Such endpoint serves entities of type `PointOfInterest`. Data comes from
