@@ -2,8 +2,10 @@
 
 This repository is going to be archived (Jan-2020) and subsequent works will be carried out in [Smart data models] (https://github.com/smart-data-models) repositories. Further questions on migration. alberto.abella@fiware.org
 
-This folder is intended to contain data models for Smart Agri-Food:
+MODEL UNDER SPECIFICATION. It means that it is possible that some of the contents does not exist or they were in a draft version. It will be warn within the documents
 
--   [FishCointaiment]()
+This folder is intended to contain data models for Aquaculture:
+
 -   [BreedingOperation]()
+-   [FishCointaiment]()
 -   [SingleSensor]()
