@@ -1,18 +1,16 @@
 # Data models guidelines
 
-This is a set of guidelines for defining new data models. Further information
-and a guideline update can be found at
-[D2.2 Synhronicity IoT LSP](http://synchronicity-iot.eu/wp-content/uploads/2018/05/synchronicity_d2_2_guidelines_for_the_definition_of_oasc_shared_data_models.pdf)
+This is a set of guidelines for defining new data models. 
 
-Before creating a new data model, explore the existing ones to be sure there is
-already a data model that covers your use case. The search box in the
-ReadTheDocs page can help you to search for specification connected to your
-needs. Recall to use synonyms in your search. E.g. what you might call Public
-Transport already exists under UrbanMobility.
+Before creating a new data model, explore the existing ones to be sure there is already
+a data model that covers your use case. The search box in the can help you to search for 
+specification connected to your needs. 
+Recall to use synonyms in your search. E.g. what you might call Public Transport already
+exists under UrbanMobility.
 
 If you are looking for guidelines on adoption of existing data models, please
 refer to [How to use FIWARE Harmonised Data Models in your projects](howto.md)
-section.
+section. Pending link update
 
 ## Syntax
 
@@ -28,9 +26,9 @@ section.
 ## Reuse
 
 -   Check for the existence of the same Attribute on any of the other models and
-    reuse it, if pertinent.
+    reuse it, if pertinent. [Table of attributes]() Pending link update
 -   Have a look at [schema.org](http://schema.org) trying to find a similar term
-    with the same semantics.
+    with the same semantics.[Schema.org Hierarchy](https://schema.org/docs/full.html)
 -   Try to find common used ontologies or existing standards well accepted by
     the Community, or by goverments, agencies, etc. For instance,
     [Open311](http://www.open311.org/) for civic issue tracking or
@@ -38,8 +36,8 @@ section.
 
 ## Data types
 
--   When possible reuse schema.org data types (`Text`, `Number`, `DateTime`,
-    `StructuredValue`, etc.).
+-   When possible reuse [schema.org data types](https://schema.org/DataType) 
+    (`Text`, `Number`, `DateTime`, `StructuredValue`, etc.).
 -   Remember that `null` is not allowed in NGSI-LD and therefore should be
     avoided as a value.
 
@@ -51,6 +49,10 @@ section.
 
 -   State clearly what attributes are mandatory and what are optional. Remember
     that `null` value should be avoided as it is prohibited in NGSI-LD.
+    
+-   When some element could find an ontology but that is not complete provide two 
+    non cumpulsory fields, one linking the Ontology and other as string text
+    
 
 ## Units
 
@@ -62,6 +64,9 @@ section.
 
 -   In NGSI-LD the Property `unitCode` is already defined and available to be
     used.
+    
+-   Case of some units not defined (i.e. turbidity) look for this 
+    [model extension]() pending link update. 
 
 ## Relative values
 
