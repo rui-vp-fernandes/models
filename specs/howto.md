@@ -58,7 +58,7 @@ The general principle guiding your adoption should be: keep it simple.
 -   Be aware that at the time being **none of the official FIWARE Core Enablers
     enforce schema validation**. Thus, in case you want to be sure your
     application data validates correctly against a given Data Model, this is up
-    to you.
+    to you. See [tools directory]() Pending updated link to validate your appklication data. 
 
 ## Going through a Data Model
 
@@ -373,6 +373,8 @@ for example in the case of Entity Type `Device`, the full attribute would be
 With the introduction of NGSI-LD, following the link with practises in the
 ontologies, such attributes are defined with the usage of a verb (plus
 optionally an object) such as `hasStop`, `operatedBy`, `hasTrip`, etc.
+
+This second approach is right now recommended. 
 
 While in the first case, the entity type to be looked for is implicitly defined
 by the attribute name, this is no longer the case with NGSI-LD, that's why it is
