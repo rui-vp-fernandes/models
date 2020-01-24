@@ -7,6 +7,7 @@ themes:
 
 -   [AgriFood](./AgriFood)
 -   [Alert](./Alert)
+-   [Aquaculture](./Aquaculture)
 -   [Building](./Building)
 -   [Device](./Device)
 -   [Energy](./Energy)
