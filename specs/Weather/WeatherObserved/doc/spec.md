@@ -142,7 +142,7 @@ A JSON Schema corresponding to this data model can be found
     -   Optional
 
 -   `windDirection` : The wind direction expressed in decimal degrees compared
-    to geographic North (measured clockwise), encoded as a Number.
+    to geographic North (measured clockwise), encoded as a Number. Range 0 to 360.
 
     -   Attribute type: Property. [Number](https://schema.org/Number)
     -   Default unit: Decimal degrees
