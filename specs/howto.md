@@ -58,7 +58,7 @@ The general principle guiding your adoption should be: keep it simple.
 -   Be aware that at the time being **none of the official FIWARE Core Enablers
     enforce schema validation**. Thus, in case you want to be sure your
     application data validates correctly against a given Data Model, this is up
-    to you. See [tools directory]() Pending updated link to validate your appklication data. 
+    to you. See [tools directory]() Pending updated link to validate your application data. 
 
 ## Going through a Data Model
 
