@@ -2,7 +2,7 @@
 
 This file is a template of a README.md file located in the root of a repository. Texts between brackets has to be customzed for every model
 
-if you want to find use cases of use you have to visit [USE-CASES.md](USE-CASES.md) 
+if you want to find use cases of use you have to visit [CURRENT-ADOPTERS.md](CURRENT-ADOPTERS.md) 
 
 # [DOMAIN] Data Models
 
