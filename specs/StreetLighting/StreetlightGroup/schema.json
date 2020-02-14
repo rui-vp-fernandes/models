@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema#",
-  "$id": "https://fiware.github.io/data-models/specs/StreetLighting/Streetlight/schema.json",
+  "$id": "https://fiware.github.io/data-models/specs/StreetLighting/StreetlightGroup/schema.json",
   "title": "FIWARE - Street Lighting / Streetlight Group",
   "description": "A Street light group",
   "type": "object",
