@@ -33,7 +33,7 @@ data harmonization.
 <tr>
 <td rowspan="2">AirQualityObserved</td>
 <td>Generalidad de Catalu&ntilde;a (only Barcelona&rsquo;s data)</td>
-<td>http://dtes.gencat.cat/icqa/</td>
+<td>http://mediambient.gencat.cat/ca/05_ambits_dactuacio/atmosfera/qualitat_de_laire/vols-saber-que-respires/visor-de-dades/</td>
 </tr>
 <tr>
 <td>Ayuntamiento de Madridr</td>
