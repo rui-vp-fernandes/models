@@ -23,8 +23,6 @@ from datetime import datetime, timedelta
 from urllib.request import urlopen
 from urllib.error import HTTPError
 from io import StringIO
-from logging import getLogger, Formatter, DEBUG
-from logging.handlers import RotatingFileHandler
 from re import sub
 from pytz import timezone
 from contextlib import closing
@@ -33,20 +31,26 @@ from certifi import where
 from requests import post
 from requests.exceptions import HTTPError, ConnectionError, Timeout, RequestException
 from time import sleep
+from logging_conf import LoggingConf
+from logging import info, error, debug, warning, DEBUG
 
 
-class AirQualityObserved:
+class AirQualityObserved(LoggingConf):
     def __init__(self, stations,
                  fiware_service='AirQuality',
                  fiware_service_path='/Spain_Madrid',
                  endpoint='http://localhost:1030',
                  only_latest=False,
-                 logger=None):
+                 logginglevel=DEBUG,
+                 log_file='log_file.log'
+                 ):
+        super(AirQualityObserved, self).__init__(loglevel=logginglevel, log_file=log_file)
 
-        if logger is not None:
-            self.logger = logger
-
-        self.logger.debug('#### Starting a new harvesting and harmonization cycle ... ####')
+        info('#### Starting a new harvesting and harmonization cycle ... ####')
+        info('Fiware-Service: ' + FIWARE_SERVICE)
+        info('Fiware-Servicepath: ' + FIWARE_SPATH)
+        info('Context Broker: ' + orion_service)
+        info('Only retrieving latest observations')
 
         # Entity type
         self.AMBIENT_TYPE_NAME = 'AirQualityObserved'
@@ -139,11 +143,14 @@ class AirQualityObserved:
 
         # List of known air quality stations
         self.station_dict = {}
-        self.read_station_csv()
+        self.read_station_url()  # self.read_station_csv()
 
         # Append the list of stations
         for station in stations:
             self.stations_to_retrieve_data.append(station)
+
+        # Max number of digits to represent the code of the air quality sensor
+        self.code_digits = 0
 
     def get_persisted_entities(self):
         return self.persisted_entities
@@ -157,7 +164,19 @@ class AirQualityObserved:
         return sub(r"[<(>)\"\'=;]", "", str_in)
 
     # Obtains air quality data and harmonizes it, persisting to Orion
-    def get_air_quality_madrid(self):
+    def get_air_quality_madrid(self, t=0):
+        if t > 0:
+            while True:
+                info("#### New loop started ####")
+                self.__get_air_quality_madrid_step__()
+                info("#### Sleep for {} seconds to start a new loop ####".format(t))
+                self.summary()
+                sleep(t)
+        else:
+            self.__get_air_quality_madrid_step__()
+            self.summary()
+
+    def __get_air_quality_madrid_step__(self):
         """
         Header of the data
         PROVINCIA	MUNICIPIO	ESTACION	MAGNITUD	PUNTO_MUESTREO	ANO	MES	DIA
@@ -182,7 +201,10 @@ class AirQualityObserved:
                 station_code = row[0] + row[1] + row[2]
 
                 station_num = row[2]
-                if not self.station_dict[station_num]:
+                if station_num not in self.station_dict:
+                    error("The key: {} is not in the dictionary of downloads stations (Check "
+                                    "https://datos.madrid.es/egob/catalogo/212629-1-estaciones-control-aire.csv)"
+                                    .format(station_num))
                     continue
 
                 if station_code not in stations:
@@ -257,7 +279,7 @@ class AirQualityObserved:
                     if 'id' in data:
                         data_array.append(data)
                 if len(data_array) > 0:
-                    self.logger.debug("Retrieved data for %s at %s (last hour)",
+                    debug("Retrieved data for %s at %s (last hour)",
                                       station, data_array[-1]['dateObserved']['value'])
 
                     # Last measurement is duplicated to have an entity with the
@@ -267,7 +289,7 @@ class AirQualityObserved:
                         'Madrid-AirQualityObserved-' + \
                         last_measurement['stationCode']['value'] + '-' + 'latest'
                 else:
-                    self.logger.warning('No data retrieved for: %s', station)
+                    warning('No data retrieved for: %s', station)
 
                 self.post_station_data(station, data_array)
 
@@ -364,7 +386,7 @@ class AirQualityObserved:
 
         # payload = dumps(payload).encode('ascii')
 
-        self.logger.debug(
+        debug(
             'Going to persist %s to %s - %d',
             station_code,
             self.orion_service,
@@ -374,28 +396,111 @@ class AirQualityObserved:
             r = post(url=url, json=payload, headers=headers)
             r.raise_for_status()
 
-            self.logger.debug("Entity successfully created: %s", station_code)
+            debug("Entity successfully created: %s", station_code)
             self.persisted_entities = self.persisted_entities + 1
         except HTTPError as e:
-            self.logger.error("Http Error while POSTing data to Orion: {} - {}"
-                              .format(e.response.status_code, e.response.reason))
+            error("Http Error while POSTing data to Orion: {} - {}".format(e.response.status_code, e.response.reason))
             self.in_error_entities = self.in_error_entities + 1
         except ConnectionError as e:
-            self.logger.error("Error Connecting to Orion: {}".format(e.strerror))
+            error("Error Connecting to Orion: {}".format(e.strerror))
             self.in_error_entities = self.in_error_entities + 1
         except Timeout as e:
-            self.logger.error("Timeout Error while POSTing data to Orion: {}".format(e.strerror))
+            error("Timeout Error while POSTing data to Orion: {}".format(e.strerror))
             self.in_error_entities = self.in_error_entities + 1
         except RequestException as e:
-            self.logger.error("Oops: Something else while POSTing data to Orion: {}".format(e.strerror))
+            error("Oops: Something else while POSTing data to Orion: {}".format(e.strerror))
             self.in_error_entities = self.in_error_entities + 1
 
-    # Reads station data from CSV file
+    def __fill_station__(self, code, name, address, longitud, latitud):
+        station = list()
+        result = dict()
+
+        code = code.zfill(self.code_digits)
+
+        station_coords = {
+            'type': 'geo:json',
+            'value': {
+                'type': 'Point',
+                'coordinates': [float(longitud), float(latitud)]
+            }
+        }
+
+        station = {
+            'name': name,
+            'address': address,
+            'location': station_coords
+        }
+
+        result[code] = station
+
+        return result
+
+    def __get_last_code__(self, max_code, ndigits):
+        n = int(max_code / 10)
+        if n > 0:
+            result, digits = self.__get_last_code__(n, ndigits)
+            result = result * 10 + 9
+            digits = digits + 1
+            return result, digits
+        else:
+            return 9, 1
+
+    def read_station_url(self):
+        """
+            # Reads station data from url
+            https://datos.madrid.es/egob/catalogo/212629-1-estaciones-control-aire.csv
+        """
+        with closing(urlopen(url=self.dataset_stations,
+                             context=create_default_context(cafile=where())
+                             )
+                     ) as f:
+
+            csv_data = f.read().decode("latin_1")
+            csv_list = csv_data.split("\r\n")
+
+            keys = csv_list[0].split(";")
+
+            # The last element is empty in the transformation wo we discard it
+            values = csv_list[1:len(csv_list)-1]
+            values = [data.split(';') for data in values]
+
+            icode = keys.index("CODIGO_CORTO")
+            iname = keys.index("ESTACION")
+            iaddress = keys.index("DIRECCION")
+            ilongitud = keys.index("LONGITUD")
+            ilatitud = keys.index("LATITUD")
+
+            # Get the max number of code in the data
+            max_code = max(map(lambda x: int(x[icode]), values))
+
+            # Get the Maximum number approx to 10n and total number of digits
+            last_code, self.code_digits = self.__get_last_code__(max_code, 0)
+            if self.code_digits <= 3:
+                self.code_digits = 3
+            else:
+                self.code_digits = self.code_digits + 1
+
+            # Get the list of stations by code in the form of list of dicts
+            values = list(map(lambda x: self.__fill_station__(x[icode],
+                                                              x[iname],
+                                                              x[iaddress],
+                                                              x[ilongitud],
+                                                              x[ilatitud]), values))
+
+            # Flatting the list of dicts to dict
+            self.station_dict = dict((key, d[key]) for d in values for key in d)
+
+            # Add the last_code value
+            self.station_dict[str(last_code).zfill(self.code_digits)] = {
+                'name': 'average',
+                'address': None,
+                'location': None
+            }
+
     def read_station_csv(self):
-        """
-        Refactor: The document should be taken from
-        https://datos.madrid.es/egob/catalogo/212629-1-estaciones-control-aire.csv
-        """
+        '''
+            Reads station data from CSV file: madrid_airquality_stations.csv
+        '''
         with closing(
                 open('madrid_airquality_stations.csv', 'r')) as csvfile:
             data = reader(csvfile, delimiter=',')
@@ -426,30 +531,13 @@ class AirQualityObserved:
             }
 
     def summary(self):
-        self.logger.debug('Number of entities persisted: %d', airQuality.get_persisted_entities())
-        self.logger.debug('Number of entities in error: %d', airQuality.get_in_error_entities())
-        self.logger.debug('#### Harvesting cycle finished ... ####')
-
-
-def setup_logger():
-    # Set up a specific logger with our desired output level
-    logger = getLogger('Madrid')
-    logger.setLevel(DEBUG)
-
-    #  Add the log message handler to the logger
-    handler = RotatingFileHandler(filename='harvest_madrid.log', maxBytes=2000000, backupCount=3)
-
-    formatter = Formatter('%(levelname)s %(asctime)s %(message)s')
-    handler.setFormatter(formatter)
-
-    logger.addHandler(handler)
-
-    return logger
+        debug('Number of entities persisted: %d', self.get_persisted_entities())
+        debug('Number of entities in error: %d', self.get_in_error_entities())
+        debug('#### Harvesting cycle finished ... ####')
 
 
 if __name__ == '__main__':
-    my_logger = setup_logger()
-
+    '''$ docker run -d streamer -cb ${Orion} -fs ${Fiware-Service} -fsp {Fiware-ServicePath} -to ${Timeout} -latest ${Station}'''
     parser = ArgumentParser(description='Madrid air quality harvester')
 
     parser.add_argument('stations', metavar='stations', type=str, nargs='*',
@@ -459,80 +547,69 @@ if __name__ == '__main__':
                              'viz/4a44801e-7bb2-41bc-b293-35ae2a7306f5/'
                              'public_map')
 
-    parser.add_argument('--service', metavar='service', type=str, nargs=1,
+    parser.add_argument('-fs', metavar='service', type=str, nargs=1,
                         help='FIWARE Service')
 
-    parser.add_argument('--service-path', metavar='service_path',
+    parser.add_argument('-fsp', metavar='service_path',
                         type=str, nargs=1, help='FIWARE Service Path')
 
-    parser.add_argument('--endpoint', metavar='endpoint', type=str, nargs=1,
+    parser.add_argument('-cb', metavar='endpoint', type=str, nargs=1,
                         help='Context Broker endpoint. '
                              'Example: http://orion:1026')
 
-    parser.add_argument('--latest', action='store_true',
+    parser.add_argument('-latest', action='store_true',
                         help='Flag to indicate to only '
                              'harvest the latest observation')
 
-    parser.add_argument('--t0', metavar='t0', type=int, nargs=1, default=0,
+    parser.add_argument('-t', metavar='t0', type=int, nargs=1, default=[0],
                         help='Time to recover again the data in seconds. Default value 0 means no execution again. '
                              'Minimum value xxx ')
 
     args = parser.parse_args()
 
     FIWARE_SERVICE = None
-    if args.service:
-        FIWARE_SERVICE = args.service[0]
-        my_logger.info('Fiware-Service: ' + FIWARE_SERVICE)
+    if args.fs:
+        FIWARE_SERVICE = args.fs[0]
 
     FIWARE_SPATH = None
-    if args.service_path:
-        FIWARE_SPATH = args.service_path[0]
-        my_logger.info('Fiware-Servicepath: ' + FIWARE_SPATH)
+    if args.fsp:
+        FIWARE_SPATH = args.fsp[0]
 
     orion_service = None
-    if args.endpoint:
-        orion_service = args.endpoint[0]
-        my_logger.info('Context Broker: ' + orion_service)
+    if args.cb:
+        orion_service = args.cb[0]
 
     only_latest = False
     if args.latest:
-        my_logger.info('Only retrieving latest observations')
         only_latest = True
 
-    if args.t0 <= 1800 and args.t0 != 0:
-        my_logger.error('The minimum waiting time to execute the harvest again is 1800 seconds.')
+    if args.t[0] <= 1800 and args.t[0] != 0:
+        print('ERROR: The minimum waiting time to execute the harvest again is 1800 seconds.')
         exit(-1)
-    elif args.t0 == 0:
+    elif args.t[0] == 0:
         # The process is executed only once
-        airQuality = AirQualityObserved(logger=my_logger,
-                                        stations=args.stations,
+        airQuality = AirQualityObserved(stations=args.stations,
                                         fiware_service=FIWARE_SERVICE,
                                         fiware_service_path=FIWARE_SPATH,
                                         endpoint=orion_service,
-                                        only_latest=only_latest)
+                                        only_latest=only_latest,
+                                        logginglevel=DEBUG,
+                                        log_file='harvest_madrid.log')
 
         airQuality.get_air_quality_madrid()
-
-        airQuality.summary()
     else:
         # The process is executed every args.t0 seconds without end. It is recommended
         # to have the parameter --latest in that case
         if only_latest is False:
-            my_logger.error("With continuous execution the parameter --latest MUST be indicated")
+            print("ERROR: With continuous execution the parameter --latest is mandatory")
             exit(-1)
-        while True:
-            my_logger.info("New circle started")
-            airQuality = AirQualityObserved(logger=my_logger,
-                                            stations=args.stations,
-                                            fiware_service=FIWARE_SERVICE,
-                                            fiware_service_path=FIWARE_SPATH,
-                                            endpoint=orion_service,
-                                            only_latest=only_latest)
 
-            airQuality.get_air_quality_madrid()
+        airQuality = AirQualityObserved(stations=args.stations,
+                                        fiware_service=FIWARE_SERVICE,
+                                        fiware_service_path=FIWARE_SPATH,
+                                        endpoint=orion_service,
+                                        only_latest=only_latest,
+                                        logginglevel=DEBUG,
+                                        log_file='harvest_madrid.log')
 
-            airQuality.summary()
-
-            my_logger.info("Sleep for {} seconds".format(args.t0))
-            sleep(args.t0)
-
+        airQuality.get_air_quality_madrid(t=args.t[0])
