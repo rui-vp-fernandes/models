@@ -1,8 +1,8 @@
-# How to use FIWARE Harmonised Data Models in your projects
+# How to use Smart Data Models in your projects
 
-This section aims to provide few simple guidelines for the adoption of FIWARE
-Harmonised Data Models. Readers interested into modifying or creating new data
-models should refer to [Data models guidelines](guidelines.md). This guide is
+This section aims to provide few simple guidelines for the adoption of Smart
+Data Models. Readers interested into modifying or creating new data
+models should refer to [Data models guidelines](https://github.com/smart-data-models/data-models/blob/master/guidelines.md). This guide is
 not exhaustive and does not aim to cover the specifics of each model, rather it
 provides general usage tips valid for most of the existing models and for
 expected models in the future.
@@ -10,11 +10,11 @@ expected models in the future.
 Data Models have been defined in relation to the FIWARE reference data context
 model ([NGSI v2](http://fiware.github.io/specifications/ngsiv2/stable/)). While
 this does not imply that they cannot be used outside of the NGSI context model,
-it does however indicate that some of [design principles](guidelines.md) have
+it does however indicate that some of [design principles](https://github.com/smart-data-models/data-models/blob/master/guidelines.md) have
 been driven by that. This also implicitly means that Data Models will follow the
 evolution of FIWARE platform,
 [NGSI-LD](https://www.etsi.org/deliver/etsi_gs/CIM/001_099/004/01.01.01_60/gs_CIM004v010101p.pdf)
-mappings will be added to all existing Data Models in the medium term.
+mappings are being added to all existing Data Models.
 
 ## General principles
 
@@ -37,9 +37,9 @@ The general principle guiding your adoption should be: keep it simple.
     interoperability. Of course it may be the case that the model is not
     covering your scenario, or it contains errors. Open a ticket in the
     repository, and let the community discuss on the issue!
-    [Contribute](guidelines.md) to the evolution of the model! In doing so
+    [Contribute](https://github.com/smart-data-models/data-models/blob/master/guidelines.md) to the evolution of the model! In doing so
     please keep in mind the
-    [guidelines to create new data models](guidelines.md).
+    [guidelines to create new data models](https://github.com/smart-data-models/data-models/blob/master/guidelines.md).
 -   **While not generally advised, you can add additional attributes in your
     specific application for the purpose of your application.** Be aware that of
     course this means that such attributes may not be correctly used by other
@@ -275,7 +275,7 @@ following attributes:
 `dateCreated` and `dateModified` are special entity attributes provided
 off-the-shelf by NGSI v2 implementations.
 
-Most of the FIWARE Data Models adopt the
+Most of the Smart Data Models adopt the
 [GSMA common definitions](https://fiware.github.io/data-models/common-schema.json),
 and so also include standard GSMA terminology such as:
 
@@ -293,10 +293,10 @@ and so also include standard GSMA terminology such as:
     as `https://uri.etsi.org/ngsi-ld/description`
 -   `dataProvider`: A name identifying the entity providing the data.
 
-See for example the [`Building` Data Model](Building/Building/doc/spec.md).
+See for example the [`Building` Data Model](https://swagger.lab.fiware.org/?url=https://raw.githubusercontent.com/smart-data-models/dataModel.Building/master/Building/swagger.yaml).
 
-Similarly most of the FIWARE Data Models adopt the
-[Location common definitions](https://fiware.github.io/data-models/common-schema.json),
+Similarly most of the Smart Data Models adopt the
+[Location common definitions](https://smart-data-models.github.io/data-models/common-schema.json),
 and thus include the following attributes:
 
 -   `address`: the civic address of the entity as per
@@ -317,7 +317,7 @@ available [here](https://tools.ietf.org/html/rfc7946#appendix-A).
 
 1.  If your data use the default unit defined in the Data Model, you don't need
     to specify any. It is implied.
-2.  Unless explicitly stated otherwise, all FIWARE data models use the metric
+2.  Unless explicitly stated otherwise, all Smart data models use the metric
     system of measurements by default. Regardless the model specification
     include explicit reference to the scale adopted.
 3.  If your data use a different unit, you will need to use the `unitCode`
@@ -365,7 +365,7 @@ With the introduction of
 a growing number attributes are being defined which represent relationships
 between entities.
 
-Previously the FIWARE data model defined the name of such attributes was normed
+Previously the Smart data model defined the name of such attributes was normed
 to be `ref` followed by the name of the Entity Type referenced by the attribute,
 for example in the case of Entity Type `Device`, the full attribute would be
 `refDevice`.
