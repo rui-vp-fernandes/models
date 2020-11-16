@@ -13,9 +13,25 @@ Categories:
   x-ngsi:
     uri-prefix: 'https://w3id.org/saref#'
   enum:
+    - actuator
+    - endgun
+    - HVAC
+    - implement
+    - irrSection
+    - irrSystem
+    - meter
+    - multimedia          
     - network
     - sensor
   description: |
+      -   `actuator`: A device responsible for moving or controlling a mechanism or system. .
+      -   `endgun`: A device attached to an irrigation system that projects water beyond it
+      -   `HVAC`:  Heating, Ventilation and Air Conditioning (HVAC) device that provides indoor environmental comfort.
+      -   `implement`:  A device used or needed in a given activity; tool, instrument, utensil, etc.
+      -   `irrSection`: A section of an IrrSystem. Different enough from a regular section.
+      -   `irrSystem`: A mobile or fixed irrigation system such as a center pivot, linear, traveling gun, solid set, etc.
+      -   `meter`: A device built to accurately detect and display a quantity in a form readable by a human being. Partially defined by SAREF.
+      -   `multimedia`: A device designed to display, store, record or play multimedia content such as audio, images, animation, video.
       -   `network`: A device used to connect other devices in a network, such as hub, switch or router in a LAN or Sensor network.
       -   `sensor`:  A device that detects and responds to events or changes in the physical environment such as light, motion, or temperature changes.
     
@@ -24,13 +40,102 @@ ControlledProperties:
   x-ngsi:
     uri-prefix: 'https://w3id.org/saref#'
   enum:
+    - airPollution
+    - atmosphericPressure
+    - cdom
+    - conductance
+    - conductivity
+    - depth
+    - eatingActivity
+    - electricityConsumption
+    - energy
+    - fillingLevel
+    - gasConsumption
+    - heading
+    - humidity
+    - light
+    - location
+    - milking
+    - motion
+    - movementActivity
+    - noiseLevel
+    - occupancy
+    - orp
+    - pH
+    - power
+    - precipitation
     - pressure
+    - salinity
+    - smoke
+    - soilMoisture
+    - solarRadiation
+    - speed
+    - tds
     - temperature
+    - trafficFlow
+    - tss
+    - turbidity
+    - waterConsumption
+    - waterPollution
+    - weatherConditions
+    - weight
+    - windDirection
+    - windSpeed
+    - novo
   description: |
-      -   `bloodPressure`
+      -   `airPollution`
+      -   `atmosphericPressure`
+      -   `cdom`
+      -   `conductance`
+      -   `conductivity`
+      -   `depth`
+      -   `eatingActivity`
+      -   `electricityConsumption`
+      -   `energy`
+      -   `fillingLevel`
+      -   `gasConsumption`
+      -   `heading`
+      -   `humidity`
+      -   `light`
+      -   `location`
+      -   `milking`
+      -   `motion`
+      -   `movementActivity`
+      -   `noiseLevel`
+      -   `occupancy`
+      -   `orp`
+      -   `pH`
+      -   `power`
+      -   `precipitation`
+      -   `pressure`
+      -   `salinity`
+      -   `smoke`
+      -   `soilMoisture`
+      -   `solarRadiation`
+      -   `speed`
+      -   `tds`
       -   `temperature`
+      -   `trafficFlow`
+      -   `tss`
+      -   `turbidity`
+      -   `waterConsumption`
+      -   `waterPollution`
+      -   `weatherConditions`
+      -   `weight`
+      -   `windDirection`
+      -   `windSpeed`
+      -   `novo`
 
 # Here follows additional attributes for individual devices.
+novo:
+  x-ngsi:
+    uri: 'https://w3id.org/saref#novo'
+    model: 'https://schema.org/Number'
+    properties: *commonMeta
+  type: number
+  format: float
+  description: tentativa falhada, provavelmente
+
 temperature:
   x-ngsi:
     uri: 'https://w3id.org/saref#temperature'
@@ -40,23 +145,23 @@ temperature:
   format: float
   description: Property related to some measurements that are characterized by a certain value that is measured in a temperature unit (degree_Celsius, degree_Fahrenheit, or degree_kelvin)
 
-bloodPressure:
+humidity:
   x-ngsi:
-    uri: 'https://w3id.org/saref#pressure'
+    uri: 'https://w3id.org/saref#humidity'
     model: 'https://schema.org/Number'
     properties: *commonMeta
   type: number
   format: float
-  description: Property related to some measurements that are characterized by a certain value that is measured in a pressure unit
+  description: Property related to some measurements that are characterized by a certain value that is measured in a humidity unit
 
-oxygenSat:
+light:
   x-ngsi:
-    uri: 'https://w3id.org/saref#oxygenSat'
+    uri: 'https://w3id.org/saref#light'
     model: 'https://schema.org/Number'
     properties: *commonMeta
   type: number
   format: float
-  description: Property related to some measurements that are characterized by a certain value that is measured in a 0-1 interval
+  description: Property related to some measurements that are characterized by a certain value that is measured in a illuminance unit (lux)
 
 motion:
   x-ngsi:
