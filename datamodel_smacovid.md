@@ -1,19 +1,20 @@
-# {{Data Model Name}}
+# SMACovid
 
 ## Description
 
 {{Data Model Description}}
+This data model specifies the entities, and its relations, for a NGSI-LD system to monitor Hospital workers/patiants. 
 
 ## Data Model
 
-A JSON Schema corresponding to this data model can be found at
-{{add link to JSON Schema}}
+A YASM Schema corresponding to this data model can be found at
+{{add link to YASM Schema}}
 
 -   `id` : Unique identifier. It shall be a URN in the form
-    `urn:ngsi-ld:{{EntityType}}:<identifier>` where `<identifier>` shall be a
+    `urn:ngsi-ld:Smacovid:<identifier>` where `<identifier>` shall be a
     unique ID string.
 
--   `type` : Entity type. It must be equal to {{EntityType}}.
+-   `type` : Entity type. It must be equal to Smacovid.
 
 -   `modifiedAt` or `dateModified` (NGSIv2): Last update timestamp of this
     entity.
