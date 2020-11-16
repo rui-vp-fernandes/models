@@ -2,7 +2,6 @@
 
 ## Description
 
-{{Data Model Description}}
 This data model specifies the entities, and its relations, for a NGSI-LD system to monitor Hospital workers/patiants. 
 
 ## Data Model
