@@ -6,8 +6,8 @@ This data model specifies the entities, and its relations, for a NGSI-LD system 
 
 ## Data Model
 
-A YASM Schema corresponding to this data model can be found at
-{{add link to YASM Schema}}
+A Schema corresponding to this data model can be found at https://github.com/rui-vp-fernandes/models/edit/master/
+
 
 -   `id` : Unique identifier. It shall be a URN in the form
     `urn:ngsi-ld:Smacovid:<identifier>` where `<identifier>` shall be a
